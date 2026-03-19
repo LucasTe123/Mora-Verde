@@ -8,22 +8,26 @@ function renderNavbar() {
     window.location.pathname.endsWith('/');
 
   navbarEl.innerHTML = `
-    <nav class="navbar navbar--centered">
-      <div class="navbar__side-spacer"></div>
-      <a href="index.html" class="navbar__logo">
-        <img src="assets/55.png" alt="Mora Verde" style="height:60px;width:auto;display:block;" />
-      </a>
-      <div class="navbar__actions">
-        <button class="navbar__search-toggle" id="search-toggle-btn" aria-label="Buscar">
-          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
-            <circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/>
-          </svg>
-        </button>
-        <button class="navbar__hamburger" id="hamburger-btn" aria-label="Menú">
-          <span></span><span></span><span></span>
-        </button>
-      </div>
-    </nav>
+   <nav class="navbar navbar--centered">
+  <div class="navbar__side-links">
+    <a href="asesoria.html" class="navbar__side-link">Asesoría Nutricional</a>
+    <a href="consultoria.html" class="navbar__side-link">Consultoría</a>
+  </div>
+  <a href="index.html" class="navbar__logo">
+    <img src="assets/55.png" alt="Mora Verde" style="height:60px;width:auto;display:block;" />
+  </a>
+  <div class="navbar__actions">
+    <button class="navbar__search-toggle" id="search-toggle-btn" aria-label="Buscar">
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+        <circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/>
+      </svg>
+    </button>
+    <button class="navbar__hamburger" id="hamburger-btn" aria-label="Menú">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</nav>
+
 
     <div class="navbar__search-mobile" id="navbar-search-mobile">
       <div class="navbar__search-mobile-inner">
@@ -128,20 +132,18 @@ getCategorias().then(cats => {
           const q = searchInput.value.trim().toLowerCase();
           if (!q) { searchResults.style.display = 'none'; return; }
           const found = allProducts.filter(p =>
-            p.name.toLowerCase().includes(q) ||
-            (p.description || '').toLowerCase().includes(q) ||
-            (p.categoryName || '').toLowerCase().includes(q)
-          );
-          searchResults.innerHTML = !found.length
-            ? `<div class="search-empty">Sin resultados para "${q}"</div>`
-            : found.slice(0, 6).map(p => `
-                <a class="search-item" href="producto.html?id=${p.id}">
-                  <img src="${p.image}" alt="${p.name}" />
-                  <div>
-                    <div class="search-item__name">${p.name}</div>
-                    <div class="search-item__price">$${Number(p.price).toFixed(2)}</div>
-                  </div>
-                </a>`).join('');
+  p.name.toLowerCase().startsWith(q)
+);
+searchResults.innerHTML = !found.length
+  ? `<div class="search-empty">Sin resultados para "${q}"</div>`
+  : found.slice(0, 6).map(p => `
+      <a class="search-item" href="producto.html?id=${p.id}">
+        <img src="${p.image}" alt="${p.name}" />
+        <div>
+          <div class="search-item__name">${p.name}</div>
+        </div>
+      </a>`).join('');
+
           searchResults.style.display = 'block';
         }, 280);
       });

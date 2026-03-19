@@ -3,9 +3,9 @@ function initCarousel(slides) {
   if (!el) return;
 
   const defaultSlides = slides || [
-    { title: "Nature's Best: Healthy Living", subtitle: "Automatic image carousel", btnText: "Shop Now", bg: "#2d5a3d" },
-    { title: "Premium Supplements", subtitle: "Boost your performance naturally", btnText: "Explore", bg: "#3d6b50" },
-    { title: "Sports Collection", subtitle: "Active wear for an active life", btnText: "See More", bg: "#4a7c59" },
+    { title: '', subtitle: '', bg: '#2d5a3d' },
+    { title: '', subtitle: '', bg: '#3d6b50' },
+    { title: '', subtitle: '', bg: '#4a7c59' },
   ];
 
   el.innerHTML = `
@@ -17,11 +17,6 @@ function initCarousel(slides) {
               ? `<img src="${s.image}" alt="${s.title}" />`
               : `<div style="width:100%;height:100%;background:${s.bg || '#2d5a3d'}"></div>`
             }
-            <div class="slide-overlay">
-              <h2>${s.title}</h2>
-              <p>${s.subtitle || ''}</p>
-              <a href="catalogo.html" class="btn btn-primary">${s.btnText || 'Shop Now'}</a>
-            </div>
           </div>
         `).join('')}
       </div>
@@ -54,6 +49,18 @@ function initCarousel(slides) {
   document.getElementById('carousel-prev').addEventListener('click', () => { stopAuto(); goTo(current - 1); startAuto(); });
   document.getElementById('carousel-next').addEventListener('click', () => { stopAuto(); goTo(current + 1); startAuto(); });
   dots.forEach(d => d.addEventListener('click', () => { stopAuto(); goTo(+d.dataset.index); startAuto(); }));
+
+  // ── Swipe táctil ──
+  let touchStartX = 0;
+  track.addEventListener('touchstart', e => { touchStartX = e.touches[0].clientX; }, { passive: true });
+  track.addEventListener('touchend', e => {
+    const diff = touchStartX - e.changedTouches[0].clientX;
+    if (Math.abs(diff) > 50) {
+      stopAuto();
+      goTo(diff > 0 ? current + 1 : current - 1);
+      startAuto();
+    }
+  }, { passive: true });
 
   startAuto();
 }

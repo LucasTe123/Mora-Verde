@@ -2,39 +2,38 @@ import { defineField, defineType } from 'sanity'
 
 export const asesoriaType = defineType({
   name: 'asesoria',
-  title: 'Asesoría',
+  title: 'Asesoría Nutricional',
   type: 'document',
   fields: [
     defineField({
-      name: 'titulo',
-      title: 'Título',
-      type: 'string',
-      description: 'Título que aparece encima de las fotos',
-      validation: r => r.required()
+      name: 'pilar1',
+      title: 'Pilar 1',
+      type: 'object',
+      fields: [
+        { name: 'nombre', title: 'Nombre', type: 'string', validation: r => r.required() },
+        { name: 'imagen', title: 'Imagen', type: 'image', options: { hotspot: true }, description: '📐 Subí una foto VERTICAL (600x800px o similar). Se recortará automáticamente.', validation: r => r.required() }
+      ]
     }),
-
     defineField({
-      name: 'foto1',
-      title: 'Foto 1',
-      type: 'image',
-      options: { hotspot: true },
+      name: 'pilar2',
+      title: 'Pilar 2',
+      type: 'object',
+      fields: [
+        { name: 'nombre', title: 'Nombre', type: 'string', validation: r => r.required() },
+        { name: 'imagen', title: 'Imagen', type: 'image', options: { hotspot: true }, description: '📐 Subí una foto VERTICAL (600x800px o similar). Se recortará automáticamente.', validation: r => r.required() }
+      ]
     }),
-
     defineField({
-      name: 'foto2',
-      title: 'Foto 2',
-      type: 'image',
-      options: { hotspot: true },
-    }),
-
-    defineField({
-      name: 'foto3',
-      title: 'Foto 3',
-      type: 'image',
-      options: { hotspot: true },
+      name: 'pilar3',
+      title: 'Pilar 3',
+      type: 'object',
+      fields: [
+        { name: 'nombre', title: 'Nombre', type: 'string', validation: r => r.required() },
+        { name: 'imagen', title: 'Imagen', type: 'image', options: { hotspot: true }, description: '📐 Subí una foto VERTICAL (600x800px o similar). Se recortará automáticamente.', validation: r => r.required() }
+      ]
     }),
   ],
   preview: {
-    select: { title: 'titulo', media: 'foto1' }
+    select: { title: 'pilar1.nombre', media: 'pilar1.imagen' }
   }
 })
