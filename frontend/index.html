@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Organic Life | Inicio</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/styles.css" />
+</head>
+<body>
+
+  <!-- LOGO CENTRADO -->
+  <div id="navbar"></div>
+
+  <!-- ZONA CENTRAL: sidebar + columna derecha -->
+  <div class="home-main-row">
+
+    <aside class="home-sidebar-panel" id="home-categories"></aside>
+
+    <div class="home-right-col">
+
+      <!-- BUSCADOR sobre el banner -->
+      <div class="home-search-row">
+        <div class="home-search-inner">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/>
+          </svg>
+          <input type="text" id="search-input" placeholder="Buscar producto..." autocomplete="off" />
+        </div>
+        <div id="search-results" class="search-dropdown" style="display:none"></div>
+      </div>
+
+      <!-- BANNER -->
+      <div id="carrusel"></div>
+
+    </div>
+
+  </div>
+
+  <!-- PRODUCTOS NUEVOS -->
+  <section class="section home-section">
+    <div class="section__header">
+      <h2 class="section__title">Productos Nuevos</h2>
+      <a href="catalogo.html" class="section__link">Ver todos</a>
+    </div>
+    <div class="products-scroll" id="lista-nuevos"></div>
+  </section>
+
+  <!-- BOTÓN EXPLORAR: centrado entre productos y objetivos -->
+  <div class="explore-btn-wrap">
+    <a href="catalogo.html" class="btn-explore">Explorar catálogo completo</a>
+  </div>
+
+  <!-- OBJETIVOS -->
+  <section class="section" style="background: white;">
+    <div class="section__header">
+      <h2 class="section__title">¿Qué estás buscando?</h2>
+    </div>
+    <div class="goals-grid">
+      <div class="goal-card" onclick="window.location.href='categoria.html?objetivo=ganar-peso'" style="cursor:pointer">
+        <div class="goal-card__icon"><i data-lucide="dumbbell"></i></div>
+        <div class="goal-card__title">Ganar peso</div>
+        <div class="goal-card__desc">Productos y suplementos para ganar masa muscular de forma saludable.</div>
+      </div>
+      <div class="goal-card" onclick="window.location.href='categoria.html?objetivo=vida-saludable'" style="cursor:pointer">
+        <div class="goal-card__icon"><i data-lucide="leaf"></i></div>
+        <div class="goal-card__title">Vida saludable</div>
+        <div class="goal-card__desc">Alimentos naturales y vitaminas para tu rutina diaria de bienestar.</div>
+      </div>
+      <div class="goal-card" onclick="window.location.href='categoria.html?objetivo=consultas'" style="cursor:pointer">
+        <div class="goal-card__icon"><i data-lucide="message-circle"></i></div>
+        <div class="goal-card__title">Consultas</div>
+        <div class="goal-card__desc">Hablá con nuestros expertos y obtené un plan personalizado.</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- WHATSAPP -->
+  <a id="whatsapp-btn" href="https://wa.me/59175138123" target="_blank" aria-label="WhatsApp">
+    <svg viewBox="0 0 24 24" fill="white">
+      <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413z"/>
+      <path d="M12 0C5.373 0 0 5.373 0 12c0 2.123.554 4.118 1.528 5.845L.057 23.175a.75.75 0 0 0 .916.918l5.451-1.493A11.943 11.943 0 0 0 12 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 21.75a9.711 9.711 0 0 1-4.956-1.355l-.356-.213-3.681 1.008 1.021-3.6-.233-.372A9.716 9.716 0 0 1 2.25 12C2.25 6.615 6.615 2.25 12 2.25S21.75 6.615 21.75 12 17.385 21.75 12 21.75z"/>
+    </svg>
+  </a>
+
+<script src="https://unpkg.com/lucide@latest"></script>
+<script src="js/app.js"></script>
+<script src="components/navbar.js"></script>
+<script src="components/carruselComponent.js"></script>
+<script src="components/productCard.js"></script>
+<script src="js/carrusel.js"></script>
+<script src="js/productos.js"></script>
+<script src="js/menu.js"></script>
+<script src="js/homeSidebar.js"></script>
+<script>lucide.createIcons();</script>
+
+  <!-- Modal -->
+  <div class="modal-overlay" id="modal-overlay">
+    <div class="modal" id="product-modal">
+      <button class="modal__close" id="modal-close">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/>
+        </svg>
+      </button>
+      <div class="modal__img"><img id="modal-img" src="" alt="" /></div>
+      <div class="modal__info">
+        <div class="modal__brand" id="modal-brand"></div>
+        <div class="modal__name" id="modal-name"></div>
+        <div class="modal__price" id="modal-price"></div>
+        <div class="modal__desc" id="modal-desc"></div>
+        <a class="modal__wa" id="modal-wa" href="#" target="_blank">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
+            <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413z"/>
+            <path d="M12 0C5.373 0 0 5.373 0 12c0 2.123.554 4.118 1.528 5.845L.057 23.175a.75.75 0 0 0 .916.918l5.451-1.493A11.943 11.943 0 0 0 12 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 21.75a9.711 9.711 0 0 1-4.956-1.355l-.356-.213-3.681 1.008 1.021-3.6-.233-.372A9.716 9.716 0 0 1 2.25 12C2.25 6.615 6.615 2.25 12 2.25S21.75 6.615 21.75 12 17.385 21.75 12 21.75z"/>
+          </svg>
+          Contactar por WhatsApp
+        </a>
+      </div>
+    </div>
+  </div>
+
+</body>
+</html>
