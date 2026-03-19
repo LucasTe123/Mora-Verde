@@ -121,7 +121,8 @@ function renderNavbar() {
   // ── Search desktop ──
   setTimeout(() => {
     const searchInput   = document.getElementById('search-input');
-    const searchResults = document.getElementById('search-results-desktop');
+    const searchResults = document.getElementById('search-results');
+
 
     if (searchInput && searchResults) {
       searchInput.addEventListener('input', () => {
@@ -175,10 +176,11 @@ function renderNavbar() {
       const searchResults = document.getElementById('search-results-mobile');
       if (!searchResults) return;
       if (!q) { searchResults.style.display = 'none'; return; }
-      const found = allProducts.filter(p =>
-        p.name.toLowerCase().includes(q) ||
-        (p.description || '').toLowerCase().includes(q)
-      );
+      // DESPUÉS:
+const found = allProducts.filter(p =>
+  p.name.toLowerCase().startsWith(q)
+);
+
       searchResults.innerHTML = !found.length
         ? `<div class="search-empty">Sin resultados para "${q}"</div>`
         : found.slice(0, 6).map(p => `

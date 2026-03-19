@@ -64,9 +64,13 @@
     let html = '<span class="sidebar-section-title">Categorías</span>';
     html += `<a href="index.html" class="active">${ICONS['home']}Inicio</a>`;
     html += `<a href="catalogo.html">${ICONS['grid']}Todos los productos</a>`;
+
     cats.forEach(c => {
       html += `<a href="categoria.html?cat=${c.slug}">${getIcon(c.slug)}${c.nombre}</a>`;
     });
+
+    // Espaciado al final para que el último item sea accesible en iPhone
+    html += '<div style="height: 60px; flex-shrink: 0;"></div>';
 
     container.innerHTML = html;
   }
