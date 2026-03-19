@@ -1802,19 +1802,14 @@ a { text-decoration: none; color: inherit; }
 .navbar__side-link:hover {
   color: #416b44;
 }
+.navbar__side-link {
+  font-size: 0.85rem;
+  font-weight: 500;
+  color: var(--gray-800);
+  transition: color var(--transition);
+}
+.navbar__side-link:hover { color: var(--green); }
 
-@media (max-width: 768px) {
-  .navbar__side-links {
-    display: none;
-  }
-}
-.sidebar {
-  overflow-y: scroll !important;
-  -webkit-overflow-scrolling: touch !important;
-}
-.sidebar nav {
-  display: flex;
-  flex-direction: column;
-  overflow: visible;
-  padding-bottom: 60px;
+@media (max-width: 1024px) {
+  .navbar__side-link { display: none !important; }
 }
