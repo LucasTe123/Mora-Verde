@@ -119,14 +119,16 @@ function normalizarProducto(p) {
       images: p.imagenes || [],
       price: p.precio || 0,
       description: p.descripcion || '',
+      isNew: p.esNuevo === true,    // ← ESTA LÍNEA ES LA QUE FALTA
       categoryName: p.categorias && p.categorias[0] ? p.categorias[0].nombre : 'General',
-      presentaciones: p.presentaciones || []  // ← nuevo
+      presentaciones: p.presentaciones || []
     };
   } catch (error) {
     console.error("Error normalizando producto:", error);
     return null;
   }
 }
+
 
 function buildWaUrl(product) {
   const urlProducto = `https://moraverde.online/producto.html?id=${product.id}`;

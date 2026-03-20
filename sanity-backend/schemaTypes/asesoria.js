@@ -11,7 +11,7 @@ export const asesoriaType = defineType({
       type: 'object',
       fields: [
         { name: 'nombre', title: 'Nombre', type: 'string', validation: r => r.required() },
-        { name: 'imagen', title: 'Imagen', type: 'image', options: { hotspot: true }, description: '📐 Subí una foto VERTICAL (600x800px o similar). Se recortará automáticamente.', validation: r => r.required() }
+        { name: 'imagen', title: 'Imagen', type: 'image', options: { hotspot: true }, description: 'Subí una foto VERTICAL (600x1200px o similar).', validation: r => r.required() }
       ]
     }),
     defineField({
@@ -20,7 +20,7 @@ export const asesoriaType = defineType({
       type: 'object',
       fields: [
         { name: 'nombre', title: 'Nombre', type: 'string', validation: r => r.required() },
-        { name: 'imagen', title: 'Imagen', type: 'image', options: { hotspot: true }, description: '📐 Subí una foto VERTICAL (600x800px o similar). Se recortará automáticamente.', validation: r => r.required() }
+        { name: 'imagen', title: 'Imagen', type: 'image', options: { hotspot: true }, description: 'Subí una foto VERTICAL (600x1200px o similar).', validation: r => r.required() }
       ]
     }),
     defineField({
@@ -29,7 +29,7 @@ export const asesoriaType = defineType({
       type: 'object',
       fields: [
         { name: 'nombre', title: 'Nombre', type: 'string', validation: r => r.required() },
-        { name: 'imagen', title: 'Imagen', type: 'image', options: { hotspot: true }, description: '📐 Subí una foto VERTICAL (600x800px o similar). Se recortará automáticamente.', validation: r => r.required() }
+        { name: 'imagen', title: 'Imagen', type: 'image', options: { hotspot: true }, description: 'Subí una foto VERTICAL (600x1200px o similar).', validation: r => r.required() }
       ]
     }),
   ],

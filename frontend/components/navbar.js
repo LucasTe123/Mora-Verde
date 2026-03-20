@@ -188,7 +188,6 @@ const found = allProducts.filter(p =>
               <img src="${p.image}" alt="${p.name}" />
               <div>
                 <div class="search-item__name">${p.name}</div>
-                <div class="search-item__price">$${Number(p.price).toFixed(2)}</div>
               </div>
             </a>`).join('');
       searchResults.style.display = 'block';
