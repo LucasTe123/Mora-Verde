@@ -86,12 +86,14 @@ async function getProductoPorId(id) {
     "imagenes": imagenes[].asset->url,
     esNuevo, fechaCreacion,
     "presentaciones": presentaciones[].etiqueta,
+    "sabores": sabores[].etiqueta,
     "categoria": categorias[0]->{ nombre, "slug": slug.current },
     "categorias": categorias[]->{ nombre, "slug": slug.current }
   }`;
   const data = await sanityFetch(query);
   return data || null;
 }
+
 
 async function getProductosPorObjetivo(objetivo) {
   const q = `*[_type == "producto" && "${objetivo}" in objetivo] | order(_createdAt desc) {
@@ -112,17 +114,19 @@ function normalizarProducto(p) {
       imagenUrl = sanityImageUrl(p.imagen);
     }
  
-    return {
-      id: p._id,
-      name: p.nombre || 'Producto sin nombre',
-      image: imagenUrl,
-      images: p.imagenes || [],
-      price: p.precio || 0,
-      description: p.descripcion || '',
-      isNew: p.esNuevo === true,    // ← ESTA LÍNEA ES LA QUE FALTA
-      categoryName: p.categorias && p.categorias[0] ? p.categorias[0].nombre : 'General',
-      presentaciones: p.presentaciones || []
-    };
+  return {
+  id: p._id,
+  name: p.nombre || 'Producto sin nombre',
+  image: imagenUrl,
+  images: p.imagenes || [],
+  price: p.precio || 0,
+  description: p.descripcion || '',
+  isNew: p.esNuevo === true,
+  categoryName: p.categorias && p.categorias[0] ? p.categorias[0].nombre : 'General',
+  presentaciones: p.presentaciones || [],
+  sabores: p.sabores || []        // ← NUEVA LÍNEA
+};
+
   } catch (error) {
     console.error("Error normalizando producto:", error);
     return null;

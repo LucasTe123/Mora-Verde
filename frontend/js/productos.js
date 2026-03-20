@@ -286,6 +286,7 @@ document.addEventListener('DOMContentLoaded', async () => {
 
       presentacionesContainer.appendChild(botones);
     }
+    
     // ── FIN PRESENTACIONES ──
 
     const waLink = document.getElementById('detail-wa');
@@ -301,3 +302,35 @@ function detectPage() {
   if (path.includes('producto')) return 'producto';
   return 'home';
 }
+// ── SABORES ──
+const saboresContainer = document.getElementById('detail-sabores');
+if (saboresContainer && product.sabores?.length) {
+  saboresContainer.innerHTML = '';
+
+  const titulo = document.createElement('p');
+  titulo.textContent = 'SABORES DISPONIBLES';
+  titulo.style.cssText = 'font-size:11px;font-weight:600;letter-spacing:1px;color:#888;margin:0 0 10px 0';
+  saboresContainer.appendChild(titulo);
+
+  const botones = document.createElement('div');
+  botones.style.cssText = 'display:flex;flex-wrap:wrap;gap:8px';
+
+  product.sabores.forEach(s => {
+    const btn = document.createElement('div');
+    btn.textContent = s;
+    btn.style.cssText = `
+      padding: 8px 18px;
+      border-radius: 8px;
+      border: 2px solid #ddd;
+      font-weight: 400;
+      font-size: 14px;
+      background: #fff;
+      color: #444;
+      cursor: default;
+    `;
+    botones.appendChild(btn);
+  });
+
+  saboresContainer.appendChild(botones);
+}
+// ── FIN SABORES ──

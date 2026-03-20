@@ -79,6 +79,33 @@ export const productoType = defineType({
       ]
     }),
 
+    // ── SABORES DEL PRODUCTO ──
+    defineField({
+      name: 'sabores',
+      title: 'Sabores disponibles',
+      description: 'Ej: Frutilla, Chocolate, Natural — agregá uno por uno',
+      type: 'array',
+      of: [
+        {
+          type: 'object',
+          name: 'sabor',
+          title: 'Sabor',
+          fields: [
+            defineField({
+              name: 'etiqueta',
+              title: 'Etiqueta',
+              type: 'string',
+              description: 'Ej: Frutilla, Mango, Sin sabor',
+              validation: r => r.required()
+            })
+          ],
+          preview: {
+            select: { title: 'etiqueta' }
+          }
+        }
+      ]
+    }),
+
     defineField({
       name: 'esNuevo',
       title: '¿Es producto nuevo?',
