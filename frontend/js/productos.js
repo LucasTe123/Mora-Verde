@@ -140,7 +140,6 @@ document.addEventListener('DOMContentLoaded', async () => {
     if (!raw) return;
     const product = normalizarProducto(raw);
 
-    // ✅ META TAGS OPEN GRAPH
     const urlProducto = `https://moraverde.online/producto.html?id=${id}`;
 
     function setMeta(selector, value) {
@@ -260,34 +259,64 @@ document.addEventListener('DOMContentLoaded', async () => {
     if (presentacionesContainer && product.presentaciones?.length) {
       presentacionesContainer.innerHTML = '';
 
-      const titulo = document.createElement('p');
-      titulo.textContent = 'PRESENTACIONES DISPONIBLES';
-      titulo.style.cssText = 'font-size:11px;font-weight:600;letter-spacing:1px;color:#888;margin:0 0 10px 0';
-      presentacionesContainer.appendChild(titulo);
+      const titPres = document.createElement('p');
+      titPres.textContent = 'PRESENTACIONES DISPONIBLES';
+      titPres.style.cssText = 'font-size:11px;font-weight:600;letter-spacing:1px;color:#888;margin:0 0 10px 0';
+      presentacionesContainer.appendChild(titPres);
 
-      const botones = document.createElement('div');
-      botones.style.cssText = 'display:flex;flex-wrap:wrap;gap:8px';
+      const botonesPres = document.createElement('div');
+      botonesPres.style.cssText = 'display:flex;flex-wrap:wrap;gap:8px';
 
-      product.presentaciones.forEach((p, i) => {
+      product.presentaciones.forEach(p => {
         const btn = document.createElement('div');
         btn.textContent = p;
         btn.style.cssText = `
-  padding: 8px 18px;
-  border-radius: 8px;
-  border: 2px solid #ddd;
-  font-weight: 400;
-  font-size: 14px;
-  background: #fff;
-  color: #444;
-  cursor: default;
-`;
-        botones.appendChild(btn);
+          padding: 8px 18px;
+          border-radius: 8px;
+          border: 2px solid #ddd;
+          font-weight: 400;
+          font-size: 14px;
+          background: #fff;
+          color: #444;
+          cursor: default;
+        `;
+        botonesPres.appendChild(btn);
       });
 
-      presentacionesContainer.appendChild(botones);
+      presentacionesContainer.appendChild(botonesPres);
     }
-    
-    // ── FIN PRESENTACIONES ──
+
+    // ── SABORES ──
+    const saboresContainer = document.getElementById('detail-sabores');
+    if (saboresContainer && product.sabores?.length) {
+      saboresContainer.innerHTML = '';
+
+      const titSab = document.createElement('p');
+      titSab.textContent = 'SABORES DISPONIBLES';
+      titSab.style.cssText = 'font-size:11px;font-weight:600;letter-spacing:1px;color:#888;margin:0 0 10px 0';
+      saboresContainer.appendChild(titSab);
+
+      const botonesSab = document.createElement('div');
+      botonesSab.style.cssText = 'display:flex;flex-wrap:wrap;gap:8px';
+
+      product.sabores.forEach(s => {
+        const btn = document.createElement('div');
+        btn.textContent = s;
+        btn.style.cssText = `
+          padding: 8px 18px;
+          border-radius: 8px;
+          border: 2px solid #ddd;
+          font-weight: 400;
+          font-size: 14px;
+          background: #fff;
+          color: #444;
+          cursor: default;
+        `;
+        botonesSab.appendChild(btn);
+      });
+
+      saboresContainer.appendChild(botonesSab);
+    }
 
     const waLink = document.getElementById('detail-wa');
     if (waLink) waLink.href = buildWaUrl(product);
@@ -302,35 +331,3 @@ function detectPage() {
   if (path.includes('producto')) return 'producto';
   return 'home';
 }
-// ── SABORES ──
-const saboresContainer = document.getElementById('detail-sabores');
-if (saboresContainer && product.sabores?.length) {
-  saboresContainer.innerHTML = '';
-
-  const titulo = document.createElement('p');
-  titulo.textContent = 'SABORES DISPONIBLES';
-  titulo.style.cssText = 'font-size:11px;font-weight:600;letter-spacing:1px;color:#888;margin:0 0 10px 0';
-  saboresContainer.appendChild(titulo);
-
-  const botones = document.createElement('div');
-  botones.style.cssText = 'display:flex;flex-wrap:wrap;gap:8px';
-
-  product.sabores.forEach(s => {
-    const btn = document.createElement('div');
-    btn.textContent = s;
-    btn.style.cssText = `
-      padding: 8px 18px;
-      border-radius: 8px;
-      border: 2px solid #ddd;
-      font-weight: 400;
-      font-size: 14px;
-      background: #fff;
-      color: #444;
-      cursor: default;
-    `;
-    botones.appendChild(btn);
-  });
-
-  saboresContainer.appendChild(botones);
-}
-// ── FIN SABORES ──
